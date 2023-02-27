@@ -7,7 +7,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 const generateAction = async (req, res) => {
   // Run first prompt
-  const composedPrompt = `Write me a compelling essay about ${req.body.userInput} in the style of famous Twitter personalities like Paul Graham and Naval Ravikant. Each paragraph should have a strong hook, some examples, and a clear conclusion. The last paragraph should include a strong Call to Action.`;
+  const composedPrompt = `Write me a compelling essay about ${req.body.userInput} in the style of Paul Graham and Naval Ravikant. Each paragraph should have a strong hook, some examples, and a clear conclusion. The last paragraph should include a strong Call to Action.`;
   console.log(`API: ${composedPrompt}`)
 
   const baseCompletion = await openai.createCompletion({
