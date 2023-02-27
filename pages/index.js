@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import buildspaceLogo from '../assets/buildspace-logo.png';
 import { useState } from 'react';
 
 const Home = () => {
@@ -10,8 +9,6 @@ const Home = () => {
 
   const callGenerateEndpoint = async () => {
     setIsGenerating(true);
-
-    console.log("Calling OpenAI...")
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: {
@@ -22,7 +19,6 @@ const Home = () => {
 
     const data = await response.json();
     const { output } = data;
-    console.log("OpenAI replied...", output.text)
 
     setApiOutput(`${output.text}`);
     setIsGenerating(false);
@@ -35,19 +31,19 @@ const Home = () => {
   return (
     <div className="root">
       <Head>
-        <title>GPT-3 Writer</title>
+        <title>Get great LinkedIn posts instantly - The Easy Way</title>
       </Head>
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>sup, insert your headline here</h1>
+            <h1>Stand out from the crowd with creative LinkedIn posts</h1>
           </div>
           <div className="header-subtitle">
-            <h2>insert your subtitle here</h2>
+            <h2>Fast, fun and easy post generation for any topic</h2>
           </div>
         </div>
         <div className="prompt-container">
-          <textarea placeholder="start typing here" className="prompt-box" value={userInput} onChange={onUserChangedText} />
+          <textarea placeholder="Enter your topic, be creative" className="prompt-box" value={userInput} onChange={onUserChangedText} />
           <div className="prompt-buttons">
             <a
               className={isGenerating ? 'generate-button loading' : 'generate-button'}
@@ -62,7 +58,7 @@ const Home = () => {
             <div className="output">
               <div className="output-header-container">
                 <div className="output-header">
-                  <h3>Output</h3>
+                  <h3>LinkedIn text:</h3>
                 </div>
               </div>
               <div className="output-content">

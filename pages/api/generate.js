@@ -5,16 +5,16 @@ const configuration = new Configuration({
 });
 
 const openai = new OpenAIApi(configuration);
-const basePromptPrefix = "";
 const generateAction = async (req, res) => {
   // Run first prompt
-  console.log(`API: ${basePromptPrefix}${req.body.userInput}`)
+  const composedPrompt = `Write me a compelling essay about ${req.body.userInput} in the style of famous Twitter personalities like Paul Graham and Naval Ravikant. Each paragraph should have a strong hook, some examples, and a clear conclusion. The last paragraph should include a strong Call to Action.`;
+  console.log(`API: ${composedPrompt}`)
 
   const baseCompletion = await openai.createCompletion({
     model: 'text-davinci-003',
-    prompt: `${basePromptPrefix}${req.body.userInput}`,
+    prompt: `${composedPrompt}`,
     temperature: 0.7,
-    max_tokens: 250,
+    max_tokens: 2000,
   });
   
   const basePromptOutput = baseCompletion.data.choices.pop();
